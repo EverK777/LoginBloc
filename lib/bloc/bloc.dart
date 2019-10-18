@@ -25,7 +25,7 @@ class Bloc with Validators {
       Observable.combineLatest2(email, password, (e, p) => true);
 
   String submit() {
-    print('logged in');
+   return 'LoggedIn';
   }
 
   void dispose() {

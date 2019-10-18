@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_bloc/bloc/bloc.dart';
@@ -216,10 +215,10 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget signInButton(){
+  Widget signInButton() {
     return StreamBuilder(
       stream: bloc.submitValidation,
-      builder: (context,snapshot){
+      builder: (context, snapshot) {
         return Container(
           width: double.infinity,
           margin: EdgeInsets.fromLTRB(30, 8, 30, 8),
@@ -232,7 +231,17 @@ class LoginScreen extends StatelessWidget {
             child: Text(
               'Sign in',
               style: TextStyle(color: CupertinoColors.white),
-            ), onPressed: snapshot.hasData ? bloc.submit : null,
+            ),
+            onPressed: snapshot.hasData
+                ? () => showCupertinoModalPopup(
+                    context: context,
+                    builder: (BuildContext context) => Container(
+                          height: 200,
+                          width: double.infinity,
+                          color: CupertinoColors.white,
+                          child: Center(child:Text(bloc.submit(),style: TextStyle(color: CupertinoColors.black) ,) ,),
+                        ))
+                : null,
           )),
         );
       },
